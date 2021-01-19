@@ -80,17 +80,7 @@ public class Register extends AppCompatActivity{
                 String password = etPassword.getText().toString().trim();
                // String confirmPassword = etConfirmPass.getText().toString().trim();
 
-                if(username.isEmpty())
-                {
-                    etUsername.setError("Please enter your email address");
-                    etUsername.requestFocus();
-                }
-                else  if(password.isEmpty())
-                {
-                    etPassword.setError("Please enter your password");
-                    etPassword.requestFocus();
-                }
-                else if (username.isEmpty() && password.isEmpty())
+                if (username.isEmpty() && password.isEmpty())
                 {
                     Toast.makeText(Register.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
                 }

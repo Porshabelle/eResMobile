@@ -1,5 +1,6 @@
 package com.example.eresapplication.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,11 @@ import com.example.eresapplication.Classes.HouseCommittee;
 import com.example.eresapplication.Classes.ResManager;
 import com.example.eresapplication.R;
 import com.example.eresapplication.Utilities;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
@@ -36,6 +41,7 @@ public class Login extends AppCompatActivity {
 
     EditText etUsername, etPassword, etResetMail;
     FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
     RadioGroup rgOccupations;
     RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee,rbMentor;
     Button btnRegisterNewUser, btnLogin;
@@ -45,6 +51,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         btnLogin = findViewById(R.id.btnLogin);
@@ -67,15 +75,25 @@ public class Login extends AppCompatActivity {
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         tvReset = findViewById(R.id.tvReset);
 
-        btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent registerActivityIntent = new Intent(Login.this,Register.class);
-                startActivity(registerActivityIntent);
-            }
-        });
 
-        tvReset.setOnClickListener(new View.OnClickListener() {
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                if(mFirebaseUser != null) {
+                    Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(Login.this, "Please Login", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+
+
+       /* tvReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -97,8 +115,8 @@ public class Login extends AppCompatActivity {
                         }
                         else
                         {
-                            tvLoad.setText("Sending info to email address");
-                            showProgress(true);
+                            //tvLoad.setText("Sending info to email address");
+                          //  showProgress(true);
 
                         }
                     }
@@ -111,12 +129,12 @@ public class Login extends AppCompatActivity {
                 });
                 dialog.show();
             }
-        });
+        });*/
 
         rgOccupations.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if(checkedId == R.id.rbCaretaker)
+                /*if(checkedId == R.id.rbCaretaker)
                 {
                     btnLogin.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -189,33 +207,70 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     });
-                }
+                }*/
                 if(checkedId == R.id.rbResManager)
                 {
                     btnLogin.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            if(etUsername.getText().toString().isEmpty()|| etPassword.getText().toString().isEmpty())
-                            {
-                                Toast.makeText(Login.this, "Specify Login Credentials and Occupation", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Utilities.isValidEmail(etUsername.getText());
-                                startActivity(new Intent(Login.this, ResManagerActivity.class));
-                                Login.this.finish();
-                            }
+
+                            String password = etPassword.getText().toString();
+                            String username = etUsername.getText().toString();
+
+                                if (username.isEmpty() || password.isEmpty())
+                                {
+                                    Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
+                                }
+                                else if(!(username.isEmpty() && password.isEmpty()))
+                                {
+                                    mFirebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                            if (!task.isSuccessful()) {
+                                                Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Intent intent = new Intent(Login.this, ResManagerActivity.class);
+                                                startActivity(intent);
+
+                                            }
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    Toast.makeText(Login.this, "Error occured!", Toast.LENGTH_SHORT).show();
+
+                                }
+
                         }
                     });
                 }
             }
         });
+
+        btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerActivityIntent = new Intent(Login.this,Register.class);
+                startActivity(registerActivityIntent);
+            }
+        });
+
     }
+
+
+    protected void onStart() {
+        super.onStart();
+        mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+
 
     /**
      * Shows the progress UI and hides the login form.
      */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
+    /*@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
         // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
         // for very easy animations. If available, use these APIs to fade-in
@@ -256,6 +311,6 @@ public class Login extends AppCompatActivity {
             tvLoad.setVisibility(show ? View.VISIBLE : View.GONE);
             mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
         }
-    }
+    }*/
 
 }
