@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -36,8 +37,10 @@ public class Login extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 4000;
 
     private View mProgressView;
-    private View mLoginFormView;
+
     private TextView tvLoad;
+
+    LinearLayout studentLayout,resManLayout,hcLayout,mentorLayout,mLoginFormView;
 
     EditText etUsername, etPassword, etResetMail;
     FirebaseAuth mFirebaseAuth;
@@ -46,11 +49,18 @@ public class Login extends AppCompatActivity {
     RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee,rbMentor;
     Button btnRegisterNewUser, btnLogin;
     TextView tvReset;
+    String role = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        studentLayout = (LinearLayout) findViewById(R.id.studentLayout);
+        resManLayout = (LinearLayout) findViewById(R.id.resManLayout);
+        hcLayout = (LinearLayout) findViewById(R.id.hcLayout);
+        mentorLayout = (LinearLayout) findViewById(R.id.mentorLayout);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -83,6 +93,7 @@ public class Login extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
                 if(mFirebaseUser != null) {
                     Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
+
                 }
                 else
                 {
@@ -134,120 +145,87 @@ public class Login extends AppCompatActivity {
         rgOccupations.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                /*if(checkedId == R.id.rbCaretaker)
-                {
-                    btnLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(etUsername.getText().toString().isEmpty()|| etPassword.getText().toString().isEmpty())
-                            {
-                                Toast.makeText(Login.this, "Specify Login Credentials and Occupation", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Utilities.isValidEmail(etUsername.getText());
-                                startActivity(new Intent(Login.this, CareTakerActivity.class));
-                                Login.this.finish();
-                            }
-                        }
-                    });
-                }
+
                 if(checkedId == R.id.rbStudent)
                 {
-                    btnLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            if(etUsername.getText().toString().isEmpty()|| etPassword.getText().toString().isEmpty())
-                            {
-                                Toast.makeText(Login.this, "Specify Login Credentials and Occupation", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Utilities.isValidEmail(etUsername.getText());
-                                startActivity(new Intent(Login.this, StudentActivity.class));
-                                Login.this.finish();
-                            }
-                        }
-                    });
+                   role = "student";
                 }
-                if(checkedId == R.id.rbHouseCommittee)
+                else if(checkedId == R.id.rbHouseCommittee)
                 {
-                    btnLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
 
-                            if(etUsername.getText().toString().isEmpty()|| etPassword.getText().toString().isEmpty())
-                            {
-                                Toast.makeText(Login.this, "Specify Login Credentials and Occupation", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Utilities.isValidEmail(etUsername.getText());
-                                startActivity(new Intent(Login.this, HCActivity.class));
-                                Login.this.finish();
-                            }
-                        }
-                    });
+                   role = "hc";
+
                 }
-                if(checkedId == R.id.rbMentor)
+                else if(checkedId == R.id.rbMentor)
                 {
-                    btnLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if(etUsername.getText().toString().isEmpty()|| etPassword.getText().toString().isEmpty())
-                            {
-                                Toast.makeText(Login.this, "Specify Login Credentials and Occupation", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Utilities.isValidEmail(etUsername.getText());
-                                startActivity(new Intent(Login.this, MentorActivity.class));
-                                Login.this.finish();
-                            }
-                        }
-                    });
-                }*/
-                if(checkedId == R.id.rbResManager)
+                    role = "mentor";
+                }
+                else
                 {
-                    btnLogin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            String password = etPassword.getText().toString();
-                            String username = etUsername.getText().toString();
-
-                                if (username.isEmpty() || password.isEmpty())
-                                {
-                                    Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
-                                }
-                                else if(!(username.isEmpty() && password.isEmpty()))
-                                {
-                                    mFirebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                            if (!task.isSuccessful()) {
-                                                Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                Intent intent = new Intent(Login.this, ResManagerActivity.class);
-                                                startActivity(intent);
-
-                                            }
-                                        }
-                                    });
-                                }
-                                else
-                                {
-                                    Toast.makeText(Login.this, "Error occured!", Toast.LENGTH_SHORT).show();
-
-                                }
-
-                        }
-                    });
+                    role = "ram";
                 }
             }
         });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String password = etPassword.getText().toString();
+                String username = etUsername.getText().toString();
+
+                if (username.isEmpty() || password.isEmpty())
+                {
+                    Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
+                }
+                else if(!(username.isEmpty() && password.isEmpty()))
+                {
+                    mFirebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+
+                                if(role == "student")
+                                {
+                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
+                                    studentLayout.setVisibility(studentLayout.VISIBLE);
+                                }
+                                else if(role == "hc")
+                                {
+                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
+                                    hcLayout.setVisibility(hcLayout.VISIBLE);
+
+                                }
+                                else if(role == "mentor")
+                                {
+                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
+                                    mentorLayout.setVisibility(View.VISIBLE);
+                                }
+                                else
+                                {
+                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
+                                    resManLayout.setVisibility(View.VISIBLE);
+                                }
+
+
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    Toast.makeText(Login.this, "Error occured!", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        });
+
+
 
         btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
