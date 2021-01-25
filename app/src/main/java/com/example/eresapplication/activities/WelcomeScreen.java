@@ -15,10 +15,10 @@ import com.example.eresapplication.R;
 
 import static com.example.eresapplication.activities.MainActivity.SPLASH_TIME_OUT;
 
-public class WelcomeScreen extends AppCompatActivity implements View.OnClickListener
-{
-    public CardView btnBrowseAnnouncements,btnPostAnnouncements,btnUpdateEventsCalender,btnViewComplaints,btnManageProfile,btnLogOut;
+public class WelcomeScreen extends AppCompatActivity implements View.OnClickListener {
+    public CardView btnBrowseAnnouncements, btnPostAnnouncements, btnUpdateEventsCalender, btnViewComplaints, btnManageProfile, btnLogOut;
     private static int SPLASH_TIME_OUT = 4000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +26,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
 
         btnViewComplaints = findViewById(R.id.btnViewComplaints);
         btnBrowseAnnouncements = findViewById(R.id.btnBrowseAnnouncements);
-        btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
+        // btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
         btnUpdateEventsCalender = findViewById(R.id.btnUpdateEventsCalender);
         btnManageProfile = findViewById(R.id.btnManageProfile);
         btnLogOut = findViewById(R.id.btnLogOut);
@@ -43,13 +43,12 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         Intent intent;
 
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.btnBrowseAnnouncements:
-                intent = new Intent(this,BrowseAnnouncements.class);
+                intent = new Intent(this, BrowseAnnouncements.class);
                 startActivity(intent);
                 break;
-
+/*
             case R.id.btnPostAnnouncements:
                 intent = new Intent(this,PostAnnouncements.class);
                 startActivity(intent);
@@ -86,6 +85,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
                 },SPLASH_TIME_OUT);
                 //end splash screen
                 break;
+        }*/
         }
     }
 }

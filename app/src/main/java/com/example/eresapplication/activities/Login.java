@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.style.TtsSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.eresapplication.Classes.HouseCommittee;
 import com.example.eresapplication.Classes.ResManager;
+import com.example.eresapplication.Classes.UserHelperClass;
 import com.example.eresapplication.R;
 import com.example.eresapplication.Utilities;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +33,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.sql.DatabaseMetaData;
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Login extends AppCompatActivity {
 
@@ -43,7 +52,10 @@ public class Login extends AppCompatActivity {
     LinearLayout studentLayout,resManLayout,hcLayout,mentorLayout,mLoginFormView;
 
     EditText etUsername, etPassword, etResetMail;
+    Button btnSubmitAnnouncement;
+
     FirebaseAuth mFirebaseAuth;
+
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     RadioGroup rgOccupations;
     RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee,rbMentor;
@@ -51,6 +63,8 @@ public class Login extends AppCompatActivity {
     TextView tvReset;
     String role = "";
 
+    EditText etTitle, etDescription;
+    TextView tvDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +75,8 @@ public class Login extends AppCompatActivity {
         resManLayout = (LinearLayout) findViewById(R.id.resManLayout);
         hcLayout = (LinearLayout) findViewById(R.id.hcLayout);
         mentorLayout = (LinearLayout) findViewById(R.id.mentorLayout);
+
+        btnSubmitAnnouncement = findViewById(R.id.btnSubmitAnnouncement);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -77,7 +93,7 @@ public class Login extends AppCompatActivity {
         tvLoad = findViewById(R.id.tvLoad);
 
         etUsername = findViewById(R.id.etUserName);
-        etPassword =  findViewById(R.id.etPassword);
+        etPassword = findViewById(R.id.etPassword);
 
         rgOccupations = findViewById(R.id.rgOccupations);
 
@@ -85,18 +101,15 @@ public class Login extends AppCompatActivity {
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         tvReset = findViewById(R.id.tvReset);
 
-
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if(mFirebaseUser != null) {
+                if (mFirebaseUser != null) {
                     Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
 
-                }
-                else
-                {
+                } else {
                     Toast.makeText(Login.this, "Please Login", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -146,22 +159,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
-                if(checkedId == R.id.rbStudent)
-                {
-                   role = "student";
-                }
-                else if(checkedId == R.id.rbHouseCommittee)
-                {
+                if (checkedId == R.id.rbStudent) {
+                    role = "student";
+                } else if (checkedId == R.id.rbHouseCommittee) {
 
-                   role = "hc";
+                    role = "hc";
 
-                }
-                else if(checkedId == R.id.rbMentor)
-                {
+                } else if (checkedId == R.id.rbMentor) {
                     role = "mentor";
-                }
-                else
-                {
+                } else {
                     role = "ram";
                 }
             }
@@ -174,11 +180,10 @@ public class Login extends AppCompatActivity {
                 String password = etPassword.getText().toString();
                 String username = etUsername.getText().toString();
 
-                if (username.isEmpty() || password.isEmpty())
-                {
+                if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
                 }
-                else if(!(username.isEmpty() && password.isEmpty()))
+                else if (!(username.isEmpty() && password.isEmpty()))
                 {
                     mFirebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -187,108 +192,31 @@ public class Login extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
                             }
-                            else {
-
-                                if(role == "student")
-                                {
-                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
-                                    studentLayout.setVisibility(studentLayout.VISIBLE);
-                                }
-                                else if(role == "hc")
-                                {
-                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
-                                    hcLayout.setVisibility(hcLayout.VISIBLE);
-
-                                }
-                                else if(role == "mentor")
-                                {
-                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
-                                    mentorLayout.setVisibility(View.VISIBLE);
-                                }
-                                else
-                                {
-                                    mLoginFormView.setVisibility(mLoginFormView.GONE);
-                                    resManLayout.setVisibility(View.VISIBLE);
-                                }
-
-
+                            else
+                            {
+                                    startActivity(new Intent(Login.this, ResManagerActivity.class));
                             }
                         }
                     });
                 }
                 else
-                {
-                    Toast.makeText(Login.this, "Error occured!", Toast.LENGTH_SHORT).show();
-
+                    { Toast.makeText(Login.this, "Error occurred!", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
-
 
         btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent registerActivityIntent = new Intent(Login.this,Register.class);
+                Intent registerActivityIntent = new Intent(Login.this, Register.class);
                 startActivity(registerActivityIntent);
             }
         });
 
     }
 
-
     protected void onStart() {
         super.onStart();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
     }
-
-
-
-    /**
-     * Shows the progress UI and hides the login form.
-     */
-    /*@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    private void showProgress(final boolean show) {
-        // On Honeycomb MR2 we have the ViewPropertyAnimator APIs, which allow
-        // for very easy animations. If available, use these APIs to fade-in
-        // the progress spinner.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
-            int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-            mLoginFormView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-                }
-            });
-
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            mProgressView.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-
-            tvLoad.setVisibility(show ? View.VISIBLE : View.GONE);
-            tvLoad.animate().setDuration(shortAnimTime).alpha(
-                    show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
-                @Override
-                public void onAnimationEnd(Animator animation) {
-                    tvLoad.setVisibility(show ? View.VISIBLE : View.GONE);
-                }
-            });
-        } else {
-            // The ViewPropertyAnimator APIs are not available, so simply show
-            // and hide the relevant UI components.
-            mProgressView.setVisibility(show ? View.VISIBLE : View.GONE);
-            tvLoad.setVisibility(show ? View.VISIBLE : View.GONE);
-            mLoginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        }
-    }*/
-
 }

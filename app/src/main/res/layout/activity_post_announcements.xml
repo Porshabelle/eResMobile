@@ -8,45 +8,57 @@
     android:orientation="vertical"
     tools:context=".activities.PostAnnouncements">
 
-    <TextView
-        android:id="@+id/textView5"
+    <LinearLayout
+        android:id="@+id/annLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
-        android:text="Post Announcement"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="#F6F4F4"
-        android:textSize="30sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="261dp"
-        android:layout_marginLeft="15dp"
-        app:cardCornerRadius="15dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="15dp">
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Post Announcements"
+            android:textSize="30sp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/etTitle"
             android:layout_width="match_parent"
-            android:layout_height="277dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:hint="Enter the Title"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Description" />
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine" />
-    </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/btnSubmitAnnouncement"
-        android:layout_width="190dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/gradient"
-        android:gravity="center|center_horizontal"
-        android:linksClickable="true"
-        android:text="Submit AnnouncemenT"
-        android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date" />
+
+        <Button
+            android:id="@+id/btnSubmitAnnouncement"
+            android:layout_width="222dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Button" />
+
+    </LinearLayout>
 
 </LinearLayout>
