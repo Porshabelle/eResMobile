@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/profile_photo" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/tvUserDetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

@@ -14,15 +14,14 @@ import android.view.View;
 import com.example.eresapplication.Classes.Student;
 import com.example.eresapplication.R;
 
-public class StudentActivity extends AppCompatActivity {
+public class choosePortfolio extends AppCompatActivity {
 
-
-    CardView btnGoToHCAcademics, btnGoToSocial,btnGoToHCSports,btnGoToDomestics;
+    CardView btnBrowseAnnouncements,btnViewEventsCalender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student);
+        setContentView(R.layout.activity_choose_portfolio);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Welcome To eRes");
@@ -31,40 +30,23 @@ public class StudentActivity extends AppCompatActivity {
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
 
+        btnBrowseAnnouncements = findViewById(R.id.btnBrowseAnnouncements);
+        btnViewEventsCalender = findViewById(R.id.btnViewEventsCalender);
 
-        btnGoToDomestics = findViewById(R.id.btnGoToDomestics);
-        btnGoToHCAcademics = findViewById(R.id.btnGoToHCAcademics);
-        btnGoToSocial = findViewById(R.id.btnGoToSocial);
-        btnGoToHCSports = findViewById(R.id.btnGoToHCSports);
-
-        btnGoToDomestics.setOnClickListener(new View.OnClickListener() {
+        btnBrowseAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentActivity.this,writeComplaintsAndSuggestions.class);
+                startActivity(new Intent(choosePortfolio.this, BrowseAnnouncements.class));
             }
         });
 
-        btnGoToHCAcademics.setOnClickListener(new View.OnClickListener() {
+        btnViewEventsCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
-
+                startActivity(new Intent(choosePortfolio.this, UpdateEventsCalender.class));
             }
         });
 
-        btnGoToSocial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
-            }
-        });
-
-        btnGoToHCSports.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
-            }
-        });
     }
     //ACTION BARS
     @Override
@@ -78,10 +60,9 @@ public class StudentActivity extends AppCompatActivity {
         switch(item.getItemId())
         {
             case R.id.studentActionBar:
-                startActivity(new Intent(StudentActivity.this, Login.class));
+                startActivity(new Intent(choosePortfolio.this, StudentActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
     //END ActionBars
 }
-

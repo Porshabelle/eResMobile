@@ -20,9 +20,8 @@ import java.util.Calendar;
 
 public class PostAnnouncements extends AppCompatActivity {
 
-    Button btnSubmitAnnouncement;
+    Button btnPostAnnouncements;
     EditText etTitle, etDescription;
-
 
     FirebaseDatabase rootNode;
     DatabaseReference reference;
@@ -32,12 +31,11 @@ public class PostAnnouncements extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_announcements);
 
-        btnSubmitAnnouncement = findViewById(R.id.btnSubmitAnnouncement);
-        etTitle = findViewById(R.id.etTitle);
+        btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
+        etTitle = findViewById(R.id.etAnnouncementTitle);
         etDescription = findViewById(R.id.etDescription);
 
-
-        btnSubmitAnnouncement.setOnClickListener(new View.OnClickListener() {
+        btnPostAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -51,7 +49,7 @@ public class PostAnnouncements extends AppCompatActivity {
                 reference.push().setValue(helperClass);
 
                 Toast.makeText(PostAnnouncements.this, "Submitted Announcement Successfully", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(PostAnnouncements.this,ResManagerActivity.class);
+                Intent intent = new Intent(PostAnnouncements.this,CareTakerActivity.class);
                 startActivity(intent);
                 finish();
             }

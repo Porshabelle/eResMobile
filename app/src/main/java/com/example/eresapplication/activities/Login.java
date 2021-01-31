@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity {
 
     private TextView tvLoad;
 
-    LinearLayout studentLayout,resManLayout,hcLayout,mentorLayout,mLoginFormView;
+    LinearLayout studentLayout, resManLayout, hcLayout, mentorLayout, mLoginFormView;
 
     EditText etUsername, etPassword, etResetMail;
     Button btnSubmitAnnouncement;
@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     RadioGroup rgOccupations;
-    RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee,rbMentor;
+    RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee, rbMentor;
     Button btnRegisterNewUser, btnLogin;
     TextView tvReset;
     String role = "";
@@ -71,22 +71,18 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         studentLayout = (LinearLayout) findViewById(R.id.studentLayout);
         resManLayout = (LinearLayout) findViewById(R.id.resManLayout);
         hcLayout = (LinearLayout) findViewById(R.id.hcLayout);
         mentorLayout = (LinearLayout) findViewById(R.id.mentorLayout);
 
-        btnSubmitAnnouncement = findViewById(R.id.btnSubmitAnnouncement);
-
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         btnLogin = findViewById(R.id.btnLogin);
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("eRes");
-
-        getSupportActionBar().hide();
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
@@ -106,11 +102,11 @@ public class Login extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                if (mFirebaseUser != null) {
+               /* if (mFirebaseUser != null) {
                     Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
-
-                } else {
-                    Toast.makeText(Login.this, "Please Login", Toast.LENGTH_SHORT).show();
+*/
+                {
+                    Toast.makeText(Login.this, "Please Login or Register", Toast.LENGTH_LONG).show();
                 }
             }
         };
@@ -158,18 +154,18 @@ public class Login extends AppCompatActivity {
         rgOccupations.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
-                if (checkedId == R.id.rbStudent) {
-                    role = "student";
+                if (checkedId == R.id.rbResManager) {
+                    role = "res";
+                } else if (checkedId == R.id.rbCaretaker) {
+                    role = "caretaker";
                 } else if (checkedId == R.id.rbHouseCommittee) {
-
                     role = "hc";
-
+                } else if (checkedId == R.id.rbStudent) {
+                    role = "student";
                 } else if (checkedId == R.id.rbMentor) {
                     role = "mentor";
-                } else {
-                    role = "ram";
                 }
+
             }
         });
 
@@ -182,25 +178,43 @@ public class Login extends AppCompatActivity {
 
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
-                }
-                else if (!(username.isEmpty() && password.isEmpty()))
-                {
+                } else if (!(username.isEmpty() && password.isEmpty())) {
                     mFirebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (!task.isSuccessful()) {
                                 Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
+                            } else {
+                                if (role == "res")
+                                {
                                     startActivity(new Intent(Login.this, ResManagerActivity.class));
+                                }
+                                else if (role == "student")
+                                {
+                                    startActivity(new Intent(Login.this, StudentActivity.class));
+                                }
+                                else if (role == "hc") {
+                                    startActivity(new Intent(Login.this, HCActivity.class));
+                                }
+                                else if (role == "caretaker")
+                                {
+                                    startActivity(new Intent(Login.this, CareTakerActivity.class));
+                                }
+                                else if (role == "mentor")
+                                {
+                                    startActivity(new Intent(Login.this, MentorActivity.class));
+                                }
+                                else {
+                                    Toast.makeText(Login.this, "Please select your role", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });
                 }
                 else
-                    { Toast.makeText(Login.this, "Error occurred!", Toast.LENGTH_SHORT).show();
+                    {
+                    Toast.makeText(Login.this, "Error occurred!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -212,7 +226,6 @@ public class Login extends AppCompatActivity {
                 startActivity(registerActivityIntent);
             }
         });
-
     }
 
     protected void onStart() {

@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/profile_photo" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,17 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etResidenceName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:hapticFeedbackEnabled="true"
-            android:hint="Residence Name"
-            android:textColor="#040404" />
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginRight="30dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
@@ -135,6 +125,57 @@
             android:textColor="#040404" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/margin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Gender" />
+
+        <RadioGroup
+            android:id="@+id/rgGender"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbFemale"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Female"
+                android:textSize="10sp" />
+
+            <RadioButton
+                android:id="@+id/rbMale"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Male"
+                android:textSize="10sp" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spResidence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:entries="@array/Residences"/>
+
+    <Spinner
+        android:id="@+id/spRole"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:entries="@array/Roles"/>
 
     <LinearLayout
         android:id="@+id/btnRegisterUser"

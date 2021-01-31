@@ -4,13 +4,17 @@ import java.util.Date;
 
 public class UserHelperClass
 {
-    String Title, Description;
+    private String Title;
+    private String Description;
 
+    UserHelperClass()
+    {
+
+    }
 
     public UserHelperClass(String title, String description) {
         Title = title;
         Description = description;
-
     }
 
     public String getTitle() {

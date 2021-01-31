@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "866327355249",
+    "project_id": "eres-application",
+    "storage_bucket": "eres-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866327355249:android:ed5ed525ba21acc82220d0",
+        "android_client_info": {
+          "package_name": "com.example.eresapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866327355249-b0oug98m0l4mclqib41c8e6d5rbolbr0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.eresapplication",
+            "certificate_hash": "104b329d9857b11cee88bc53f441d1d0cf8f6d98"
+          }
+        },
+        {
+          "client_id": "866327355249-7pomjt85vp9vmrrrbqnb0m4jn4kspm6m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgN-GTQmilrigxX_-ZTgAEI3VvvliqZ0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866327355249-7pomjt85vp9vmrrrbqnb0m4jn4kspm6m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
