@@ -30,6 +30,7 @@ public class StudentActivity extends AppCompatActivity {
         actionBar.setIcon(R.drawable.logo);
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.show();
 
 
         btnGoToDomestics = findViewById(R.id.btnGoToDomestics);
@@ -75,13 +76,11 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.studentActionBar:
                 startActivity(new Intent(StudentActivity.this, Login.class));
         }
         return super.onOptionsItemSelected(item);
     }
-    //END ActionBars
 }
 

@@ -21,12 +21,14 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eresapplication.Classes.User;
 import com.example.eresapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
@@ -40,7 +42,7 @@ public class Register extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
     Spinner spResidence;
     Spinner spRole;
-    String roles, residences;
+    String roles, residences,gender;
     RadioGroup rgGender;
 
 
@@ -55,9 +57,10 @@ public class Register extends AppCompatActivity {
 
         roles = "";
         residences = "";
+        gender = "";
 
         getSupportActionBar().hide();
-        //Instatiate variables
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
         tvLoad = findViewById(R.id.tvLoad);
@@ -80,6 +83,7 @@ public class Register extends AppCompatActivity {
         //Action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("Register Profile");
+        actionBar.show();
 
         adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,R.array.Residences);
 
@@ -126,7 +130,6 @@ public class Register extends AppCompatActivity {
                 {
                     residences = "Huis Technikon";
                 }
-
             }
 
             @Override
@@ -175,23 +178,29 @@ public class Register extends AppCompatActivity {
             }
         });
 
-
-
+        rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.rbFemale) {
+                    gender = "Female";
+                } else if (checkedId == R.id.rbMale) {
+                    gender = "Male";
+                }
+            }
+        });
 
        //btn Register
         btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String firstName = etFirstName.getText().toString().trim();
-                String lastName = etLastName.getText().toString().trim();
-                String residenceName = etResidenceName.getText().toString().trim();
-                String email = etUsername.getText().toString().trim();
-                String password = etPassword.getText().toString().trim();
-                String confirmPassword = etConfirmPass.getText().toString().trim();
+                final String firstName = etFirstName.getText().toString().trim();
+                final String surname = etLastName.getText().toString().trim();
+                final String stNum = etStudentNo.getText().toString().trim();
+                final String email = etUsername.getText().toString().trim();
+                final String password = etPassword.getText().toString().trim();
+                final String confirmPassword = etConfirmPass.getText().toString().trim();
 
-
-                if (email.isEmpty() && password.isEmpty() && firstName.isEmpty() && lastName.isEmpty() &&
-                      residenceName.isEmpty() &&confirmPassword.isEmpty())
+                if (email.isEmpty() && password.isEmpty() && firstName.isEmpty() && surname.isEmpty()  &&confirmPassword.isEmpty())
                 {
                     Toast.makeText(Register.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
                 }
@@ -201,18 +210,34 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if(!task.isSuccessful())
+
+                            if(task.isSuccessful())
                             {
-                                Toast.makeText(Register.this, "Registration failed, please try again", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Intent intent = new Intent(Register.this, Login.class);
-                                startActivity(intent);
+                                User user = new User(firstName,surname,email,stNum,password,confirmPassword,gender,residences,roles);
+
+                                FirebaseDatabase.getInstance().getReference("User")
+                                       .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(Register.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(Register.this, Login.class);
+                                            startActivity(intent);
+                                        }
+                                        else
+                                        {
+                                            Toast.makeText(Register.this, "Registration failed! Please try again.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }else {
+                                Toast.makeText(Register.this, "Registration failed! Please try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
+
                 if(password != confirmPassword)
                 {
                     etConfirmPass.setError("Passwords do not match!");
@@ -231,10 +256,6 @@ public class Register extends AppCompatActivity {
                 {
                     Toast.makeText(Register.this, "Error occurred!", Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
             }
         });
     }

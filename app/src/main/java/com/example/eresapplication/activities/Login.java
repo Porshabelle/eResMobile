@@ -33,8 +33,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.sql.DatabaseMetaData;
 import java.text.DateFormat;
@@ -57,8 +61,12 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mFirebaseAuth;
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-    RadioGroup rgOccupations;
-    RadioButton rbStudent, rbResManager, rbCareTaker, rbHouseCommittee, rbMentor;
+    FirebaseDatabase database;
+    DatabaseReference ref;
+
+    DatabaseReference reference;
+
+
     Button btnRegisterNewUser, btnLogin;
     TextView tvReset;
     String role = "";
@@ -91,7 +99,7 @@ public class Login extends AppCompatActivity {
         etUsername = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etPassword);
 
-        rgOccupations = findViewById(R.id.rgOccupations);
+
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
@@ -102,79 +110,20 @@ public class Login extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-               /* if (mFirebaseUser != null) {
-                    Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
-*/
-                {
-                    Toast.makeText(Login.this, "Please Login or Register", Toast.LENGTH_LONG).show();
-                }
+               /*if (mFirebaseUser != null) {
+                   Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
+               }*/
+
             }
         };
-
-
-
-       /* tvReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this);
-                dialog.setMessage("Enter Username: ");
-
-                View dialogView = getLayoutInflater().inflate(R.layout.dialog_view,null);
-                dialog.setView(dialogView);
-
-
-                etResetMail = dialogView.findViewById(R.id.etResetMail);
-                dialog.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        
-                        if(etResetMail.getText().toString().isEmpty())
-                        {
-                            Toast.makeText(Login.this, "PLEASE ENTER AN EMAIL ADDRESS", Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            //tvLoad.setText("Sending info to email address");
-                          //  showProgress(true);
-
-                        }
-                    }
-                });
-                dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-                dialog.show();
-            }
-        });*/
-
-        rgOccupations.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if (checkedId == R.id.rbResManager) {
-                    role = "res";
-                } else if (checkedId == R.id.rbCaretaker) {
-                    role = "caretaker";
-                } else if (checkedId == R.id.rbHouseCommittee) {
-                    role = "hc";
-                } else if (checkedId == R.id.rbStudent) {
-                    role = "student";
-                } else if (checkedId == R.id.rbMentor) {
-                    role = "mentor";
-                }
-
-            }
-        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String password = etPassword.getText().toString();
-                String username = etUsername.getText().toString();
+             //   final FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                String role = "";
+                final String password = etPassword.getText().toString();
+                final String username = etUsername.getText().toString();
 
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(Login.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
@@ -185,29 +134,48 @@ public class Login extends AppCompatActivity {
 
                             if (!task.isSuccessful()) {
                                 Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
-                            } else {
-                                if (role == "res")
-                                {
-                                    startActivity(new Intent(Login.this, ResManagerActivity.class));
-                                }
-                                else if (role == "student")
-                                {
-                                    startActivity(new Intent(Login.this, StudentActivity.class));
-                                }
-                                else if (role == "hc") {
-                                    startActivity(new Intent(Login.this, HCActivity.class));
-                                }
-                                else if (role == "caretaker")
-                                {
-                                    startActivity(new Intent(Login.this, CareTakerActivity.class));
-                                }
-                                else if (role == "mentor")
-                                {
-                                    startActivity(new Intent(Login.this, MentorActivity.class));
-                                }
-                                else {
-                                    Toast.makeText(Login.this, "Please select your role", Toast.LENGTH_SHORT).show();
-                                }
+                            }
+                            if (task.isSuccessful())
+                            {
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                String uid = user.getUid();
+
+                                ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+                               ref.addValueEventListener(new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                       String role =snapshot.child("Role").getValue().toString();
+                                       if(role.equals("Student"))
+                                       {
+                                           startActivity(new Intent(Login.this,StudentActivity.class));
+                                       }
+                                       else if(role.equals("Hc"))
+                                       {
+                                           startActivity(new Intent(Login.this,HCActivity.class));
+                                       }
+                                       else if(role.equals("Residence Manager"))
+                                       {
+                                           startActivity(new Intent(Login.this,ResManagerActivity.class));
+                                       }
+                                       else if(role.equals("Mentor"))
+                                       {
+                                           startActivity(new Intent(Login.this,MentorActivity.class));
+                                       }
+                                       else if(role.equals("Warden"))
+                                       {
+                                           startActivity(new Intent(Login.this,ResManagerActivity.class));
+                                       }
+                                       else {
+                                           startActivity(new Intent(Login.this,CareTakerActivity.class));
+                                       }
+                                   }
+
+                                   @Override
+                                   public void onCancelled(@NonNull DatabaseError error) {
+
+                                   }
+                               });
+
                             }
                         }
                     });

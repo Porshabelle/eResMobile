@@ -32,47 +32,5 @@ public class UpdateEventsCalender extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_events_calender);
 
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
-
-        compactCalendar = (CompactCalendarView) findViewById(R.id.calendarView);
-        compactCalendar.setUseThreeLetterAbbreviation(true);
-        btnBackToMenu = findViewById(R.id.btnBackToMenu);
-
-        //Set Events
-        Event event = new Event(Color.GREEN,1477054800000L,"Graduation Ceremony");
-        compactCalendar.addEvent(event);
-
-        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
-            @Override
-            public void onDayClick(Date dateClicked)
-            {
-                Context context = getApplicationContext();
-                if(dateClicked.toString().compareTo("Fri Oct 29 09:00:00 AST 2021") == 0)
-                {
-                    Toast.makeText(context, "Graduation Day Ceremony", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(context, "No event scheduled for this day", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-
-            @Override
-            public void onMonthScroll(Date firstDayOfNewMonth)
-            {
-                actionBar.setTitle(dateFormat.format(firstDayOfNewMonth));
-            }
-        });
-
-        btnBackToMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(UpdateEventsCalender.this, StudentActivity.class));
-            }
-        });
     }
 }

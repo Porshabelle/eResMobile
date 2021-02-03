@@ -8,13 +8,15 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.example.eresapplication.R;
 
 public class ManageProfile extends AppCompatActivity {
 
     EditText etFirstName, etLastName, etStudentNo, etResidenceName, etUsername, etPassword, etConfirmPass;
-    Button btnUpdateProfile;
+    Button btnUpdateProfile, btnChangProfilePhoto;
+    ImageView ivProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,8 @@ public class ManageProfile extends AppCompatActivity {
         etStudentNo = findViewById(R.id.etStudentNo);
         etConfirmPass = findViewById(R.id.etConfirmPassword);
         btnUpdateProfile = findViewById(R.id.btnUpdateProfile);
+        ivProfile=findViewById(R.id.ivProfile);
+       // btnChangProfilePhoto = findViewById();
 
         btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
             @Override
