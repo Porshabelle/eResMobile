@@ -121,7 +121,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
              //   final FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-                String role = "";
+              //  String role = "";
                 final String password = etPassword.getText().toString();
                 final String username = etUsername.getText().toString();
 

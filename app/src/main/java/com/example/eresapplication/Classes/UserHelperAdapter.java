@@ -18,6 +18,8 @@ public class UserHelperAdapter extends FirebaseRecyclerAdapter<UserHelperClass,U
 
         holder.tvTitle.setText(model.getTitle());
         holder.tvDescription.setText(model.getDescription());
+        holder.tvRole.setText("Posted by: "+model.getRole()+": "+model.getFirstname()+" "+model.getSurname());
+
     }
 
     @NonNull
@@ -31,11 +33,14 @@ public class UserHelperAdapter extends FirebaseRecyclerAdapter<UserHelperClass,U
     {
         TextView tvTitle;
         TextView tvDescription;
+        TextView tvRole;
         public myViewHolder(@NonNull View itemView)
         {
             super(itemView);
             tvTitle = (TextView)itemView.findViewById(R.id.tvTitle);
             tvDescription = (TextView) itemView.findViewById(R.id.tvDescription);
+            tvRole = (TextView)itemView.findViewById(R.id.tvRole);
+
         }
     }
     public UserHelperAdapter(@NonNull FirebaseRecyclerOptions options) {
