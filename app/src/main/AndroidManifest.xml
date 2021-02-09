@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.PostComplaints"></activity>
+        <activity android:name=".activities.AddEventsCalender"></activity>
+        <activity android:name=".activities.PostComplaints" />
         <activity android:name=".activities.writeComplaintsAndSuggestions" />
         <activity android:name=".writeComplaintsAndSuggestions" />
         <activity android:name=".activities.choosePortfolio" />

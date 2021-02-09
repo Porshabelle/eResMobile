@@ -59,12 +59,13 @@ public class PostAnnouncements extends AppCompatActivity {
                         String role =snapshot.child("Role").getValue().toString();
                         String firstname =snapshot.child("Firstname").getValue().toString();
                         String surname =snapshot.child("Surname").getValue().toString();
+                        String residence =snapshot.child("Residence").getValue().toString();
 
                         String title = etTitle.getText().toString().trim();
                         String description = etDescription.getText().toString().trim();
 
 
-                        UserHelperClass helperClass = new UserHelperClass(title,description,role,firstname,surname);
+                        UserHelperClass helperClass = new UserHelperClass(title,description,role,firstname,surname,residence);
                         reference.push().setValue(helperClass);
 
                         Toast.makeText(PostAnnouncements.this, "Submitted Announcement Successfully", Toast.LENGTH_SHORT).show();

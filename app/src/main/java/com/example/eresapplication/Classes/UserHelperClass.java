@@ -9,19 +9,23 @@ public class UserHelperClass
     private String Role;
     private String Firstname;
     private String Surname;
+    private String Residence;
 
 
-    UserHelperClass()
+
+    public UserHelperClass()
     {
 
     }
 
-    public UserHelperClass(String title, String description,String role,String firstname,String surname) {
+    public UserHelperClass(String title, String description,String role,String firstname,String surname,String residence) {
         Title = title;
         Description = description;
         Role = role;
         Firstname = firstname;
         Surname = surname;
+        Residence = residence;
+
     }
 
     public String getTitle() {
@@ -62,6 +66,14 @@ public class UserHelperClass
 
     public void setSurname(String surname) {
         Surname = surname;
+    }
+
+    public String getResidence() {
+        return Residence;
+    }
+
+    public void setResidence(String residence) {
+        Residence = residence;
     }
 
 }
