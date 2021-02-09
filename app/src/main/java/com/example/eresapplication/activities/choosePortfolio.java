@@ -43,7 +43,7 @@ public class choosePortfolio extends AppCompatActivity {
         btnViewEventsCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(choosePortfolio.this, UpdateEventsCalender.class));
+                startActivity(new Intent(choosePortfolio.this, ViewEventsCalender.class));
             }
         });
 
