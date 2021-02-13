@@ -109,12 +109,8 @@ public class AddEventsCalender extends AppCompatActivity {
                     mon = "December";
                     selectedDate = Integer.toString(year)+" " + mon+" " + Integer.toString(dayOfMonth)+" ";
                 }
-
             }
         });
-
-
-
 
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,8 +121,6 @@ public class AddEventsCalender extends AppCompatActivity {
 
                 EventCalender eventCalender = new EventCalender(selectedDate,etEvent.getText().toString());
                 reference.push().setValue(eventCalender);
-
-
             }
         });
 

@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.eresapplication.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CareTakerActivity extends AppCompatActivity {
 
     CardView btnPostAnnouncement;
-
+    FirebaseAuth mFireBaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

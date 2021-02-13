@@ -24,15 +24,6 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Welcome To eRes");
-        actionBar.setSubtitle("Yami@stud.com");
-        actionBar.setIcon(R.drawable.logo);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.show();
-
-
         btnGoToDomestics = findViewById(R.id.btnGoToDomestics);
         btnGoToHCAcademics = findViewById(R.id.btnGoToHCAcademics);
         btnGoToSocial = findViewById(R.id.btnGoToSocial);

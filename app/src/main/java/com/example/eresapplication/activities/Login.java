@@ -110,18 +110,13 @@ public class Login extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-               /*if (mFirebaseUser != null) {
-                   Toast.makeText(Login.this, "Logged in!", Toast.LENGTH_SHORT).show();
-               }*/
-
             }
         };
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   final FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
-              //  String role = "";
+
                 final String password = etPassword.getText().toString();
                 final String username = etUsername.getText().toString();
 
@@ -141,7 +136,7 @@ public class Login extends AppCompatActivity {
                                 String uid = user.getUid();
 
                                 ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
-                               ref.addValueEventListener(new ValueEventListener() {
+                                ref.addValueEventListener(new ValueEventListener() {
                                    @Override
                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                                        String role =snapshot.child("Role").getValue().toString();
@@ -169,13 +164,11 @@ public class Login extends AppCompatActivity {
                                            startActivity(new Intent(Login.this,CareTakerActivity.class));
                                        }
                                    }
-
                                    @Override
                                    public void onCancelled(@NonNull DatabaseError error) {
 
                                    }
                                });
-
                             }
                         }
                     });

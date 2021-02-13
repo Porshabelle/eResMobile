@@ -9,15 +9,6 @@
     android:visibility="visible"
     tools:context=".activities.Login">
 
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:visibility="gone" />
-
     <TextView
         android:id="@+id/tvLoad"
         android:layout_width="match_parent"
@@ -41,7 +32,7 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="match_parent"
-            android:layout_height="258dp"
+            android:layout_height="267dp"
             android:layout_marginTop="50dp"
             android:src="@drawable/logo"
             app:civ_border_width="4dp" />
@@ -52,8 +43,8 @@
             android:layout_marginLeft="53dp"
             android:layout_marginTop="50dp"
             android:layout_marginRight="53dp"
-            android:background="#FFFFFF"
-            app:cardCornerRadius="20dp">
+            android:background="#CDDC39"
+            app:cardCornerRadius="30dp">
 
             <EditText
                 android:id="@+id/etUserName"
@@ -80,7 +71,7 @@
             android:layout_marginLeft="53dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="53dp"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="13dp">
 
             <EditText
                 android:id="@+id/etPassword"
@@ -99,65 +90,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="179dp"
+            android:layout_height="162dp"
             android:layout_marginTop="0dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="49dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
-                <RadioGroup
-                    android:id="@+id/rgOccupations"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/rbStudent"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Student"
-                        android:textSize="10sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbCaretaker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="Caretaker"
-                        android:textSize="10sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbResManager"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:text="ResManager"
-                        android:textSize="10sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbHouseCommittee"
-                        android:layout_width="83dp"
-                        android:layout_height="match_parent"
-                        android:text="House Committee"
-                        android:textSize="10sp" />
-
-                    <RadioButton
-                        android:id="@+id/rbMentor"
-                        android:layout_width="87dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="15dp"
-                        android:text="Mentor"
-                        android:textSize="10sp" />
-
-                </RadioGroup>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="83dp"
+                android:layout_height="127dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="0dp"

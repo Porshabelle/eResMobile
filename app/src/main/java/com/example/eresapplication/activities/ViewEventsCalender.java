@@ -34,7 +34,7 @@ public class ViewEventsCalender extends AppCompatActivity {
         etEvent = findViewById(R.id.tvEvent);
         btnView = findViewById(R.id.btnView);
 
-       // ref = FirebaseDatabase.getInstance().getReference().child("Events");
+        // ref = FirebaseDatabase.getInstance().getReference().child("Events");
         rootNode = FirebaseDatabase.getInstance();
         ref = rootNode.getReference().child("Events").child("-MT2sd65yfWI4f2PMDx9");
 

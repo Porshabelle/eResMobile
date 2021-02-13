@@ -173,7 +173,7 @@
                     android:layout_width="177dp"
                     android:layout_height="57dp"
                     android:layout_marginTop="30dp"
-                    app:srcCompat="@drawable/manage_profile" />
+                    app:srcCompat="@drawable/review_complaints" />
 
                 <TextView
                     android:id="@+id/tvManageProfile"
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:gravity="center_horizontal"
-                    android:text="Manage Profile" />
+                    android:text="Review Complaints" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 

@@ -61,9 +61,9 @@ public class Register extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-        tvLoad = findViewById(R.id.tvLoad);
+     //   mLoginFormView = findViewById(R.id.login_form);
+      //  mProgressView = findViewById(R.id.login_progress);
+      //  tvLoad = findViewById(R.id.tvLoad);
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
@@ -134,16 +134,13 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
 
         //Roles spinner
         spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
                 String item2 = adapterView.getItemAtPosition(i).toString();
 
                 if (item2.equals("Residence Manager"))
@@ -174,7 +171,6 @@ public class Register extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -209,7 +205,6 @@ public class Register extends AppCompatActivity {
                     mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
 
                             if(task.isSuccessful())
                             {

@@ -30,7 +30,7 @@ public class PostAnnouncements extends AppCompatActivity {
     EditText etTitle, etDescription;
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference,ref;
+    DatabaseReference reference, ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,45 +45,47 @@ public class PostAnnouncements extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference().child("Announcements");
+                String announcementTitle = etTitle.getText().toString().trim();
+                String announcementDescription = etDescription.getText().toString().trim();
 
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
+                if (announcementTitle.isEmpty() || announcementDescription.isEmpty()) {
+                    Toast.makeText(PostAnnouncements.this, "Fill in the blanks", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    {
+                    rootNode = FirebaseDatabase.getInstance();
+                    reference = rootNode.getReference().child("Announcements");
 
-                ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
 
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        String role =snapshot.child("Role").getValue().toString();
-                        String firstname =snapshot.child("Firstname").getValue().toString();
-                        String surname =snapshot.child("Surname").getValue().toString();
-                        String residence =snapshot.child("Residence").getValue().toString();
+                    ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
 
-                        String title = etTitle.getText().toString().trim();
-                        String description = etDescription.getText().toString().trim();
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String role = snapshot.child("Role").getValue().toString();
+                            String firstname = snapshot.child("Firstname").getValue().toString();
+                            String surname = snapshot.child("Surname").getValue().toString();
+                            String residence = snapshot.child("Residence").getValue().toString();
 
+                            String title = etTitle.getText().toString().trim();
+                            String description = etDescription.getText().toString().trim();
 
-                        UserHelperClass helperClass = new UserHelperClass(title,description,role,firstname,surname,residence);
-                        reference.push().setValue(helperClass);
+                            UserHelperClass helperClass = new UserHelperClass(title, description, role, firstname, surname, residence);
+                            reference.push().setValue(helperClass);
 
-                        Toast.makeText(PostAnnouncements.this, "Submitted Announcement Successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(PostAnnouncements.this,CareTakerActivity.class);
-                        startActivity(intent);
-                        finish();
+                            Toast.makeText(PostAnnouncements.this, "Submitted Announcement Successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(PostAnnouncements.this, CareTakerActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
 
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
             }
         });
     }

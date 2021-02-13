@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ViewEventsCalender"></activity>
+        <activity android:name=".activities.SelectRoom"></activity>
+        <activity android:name=".activities.ComplaintsActivity" />
+        <activity android:name=".activities.hcReply" />
+        <activity android:name=".activities.ViewEventsCalender" />
         <activity android:name=".activities.AddEventsCalender" />
         <activity android:name=".activities.PostComplaints" />
         <activity android:name=".activities.writeComplaintsAndSuggestions" />
@@ -29,6 +32,7 @@
         <activity android:name=".activities.WelcomeScreen" />
         <activity android:name=".activities.BrowseAnnouncements" />
         <activity android:name=".activities.Register" />
+        <activity android:name=".activities.ChatRoom" />
         <activity android:name=".activities.PostAnnouncements" />
         <activity android:name=".activities.ManageProfile" />
         <activity android:name=".activities.Login" />

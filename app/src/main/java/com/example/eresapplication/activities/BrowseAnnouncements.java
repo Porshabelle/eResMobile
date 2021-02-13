@@ -53,8 +53,6 @@ public class BrowseAnnouncements extends AppCompatActivity {
 
             myAdapter = new UserHelperAdapter(options);
             recyclerView.setAdapter(myAdapter);
-
-
     }
 
     @Override

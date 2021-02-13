@@ -1,7 +1,5 @@
 package com.example.eresapplication.Classes;
 
-import java.util.Date;
-
 public class UserHelperClass
 {
     private String Title;
@@ -11,11 +9,8 @@ public class UserHelperClass
     private String Surname;
     private String Residence;
 
-
-
     public UserHelperClass()
     {
-
     }
 
     public UserHelperClass(String title, String description,String role,String firstname,String surname,String residence) {

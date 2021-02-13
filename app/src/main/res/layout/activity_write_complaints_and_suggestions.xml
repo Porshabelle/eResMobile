@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".activities.PostAnnouncements">
+    tools:context=".activities.writeComplaintsAndSuggestions">
     android:orientation="vertical">
 
     <LinearLayout
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="30dp"
-            android:hint="Suggestion Title"
+            android:hint="Announcement Title"
             android:textColor="#000000" />
 
         <TextView
@@ -61,7 +61,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="95dp"
                 android:layout_marginRight="10dp"
-                android:hint="Describe the Suggestion"
+                android:hint="Describe the Announcement"
                 android:textColor="#000000" />
 
         </LinearLayout>
@@ -69,7 +69,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnSubmitSuggestion"
+        android:id="@+id/btnPostAnnouncements"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -80,7 +80,7 @@
         android:clickable="true"
         android:gravity="center"
         android:linksClickable="true"
-        android:text="Submit"
+        android:text="Post Announcement"
         android:textColor="#000000"
         android:textSize="12sp" />
 
