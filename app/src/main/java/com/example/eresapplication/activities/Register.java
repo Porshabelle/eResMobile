@@ -32,19 +32,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity {
 
-    private View mProgressView;
-    private View mLoginFormView;
-    private TextView tvLoad;
-
-    TextInputLayout passwordLayout, confirmPasswordLayout;
     EditText etFirstName, etLastName, etStudentNo, etResidenceName, etUsername, etPassword, etConfirmPass;
     Button btnRegisterNewUser;
     FirebaseAuth mFirebaseAuth;
     Spinner spResidence;
     Spinner spRole;
-    String roles, residences,gender;
+    String roles, residences,Gender;
     RadioGroup rgGender;
-
 
     @SuppressLint("ResourceType")
     @Override
@@ -52,22 +46,15 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         //get instance
+
+
         mFirebaseAuth = FirebaseAuth.getInstance();
-
-        roles = "";
-        residences = "";
-        gender = "";
-
-        getSupportActionBar().hide();
-
-     //   mLoginFormView = findViewById(R.id.login_form);
-      //  mProgressView = findViewById(R.id.login_progress);
-      //  tvLoad = findViewById(R.id.tvLoad);
 
         etFirstName = findViewById(R.id.etFirstName);
         etLastName = findViewById(R.id.etLastName);
-        etResidenceName = findViewById(R.id.etResidenceName);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         etStudentNo = findViewById(R.id.etStudentNo);
@@ -78,137 +65,126 @@ public class Register extends AppCompatActivity {
         spResidence = findViewById(R.id.spResidence);
         spRole = findViewById(R.id.spRole);
 
-        ArrayAdapter<String> adapter;
+       ArrayAdapter adapter;
+        ArrayAdapter adapter1;
 
-        //Action bar
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle("Register Profile");
-        actionBar.show();
+       adapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.Residences));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spResidence.setAdapter(adapter);
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,R.array.Residences);
+       adapter1 = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.Roles));
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spRole.setAdapter(adapter1);
 
-        //Setup spinners
-        //Residence spinner
-        spResidence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item = adapterView.getItemAtPosition(i).toString();
-
-                if (item.equals("Mannheim Ladies"))
-                {
+       spResidence.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               if(adapterView.getItemAtPosition(i).equals("Huis Technikon"))
+               {
+                   residences = "Huis Technikon";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Loggies")){
+                   residences = "Loggies";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Mannheim Men")){
+                   residences = "Mannheim Men";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Mannheim Ladies")){
                    residences = "Mannheim Ladies";
-                }
-                if(item.equals("Loggies"))
-                {
-                    residences = "Loggies";
-                }
-                if(item.equals("Welgemoed"))
-                {
-                    residences = "Welgemoed";
-                }
-                if(item.equals("Eendrag"))
-                {
-                    residences = "Eendrag";
-                }
-                if(item.equals("Gymnos"))
-                {
-                    residences = "Gymnos";
-                }
-                if(item.equals("Graduandi"))
-                {
-                    residences = "Graduadi";
-                }
-                if(item.equals("Welkom"))
-                {
-                    residences = "Welkom";
-                }
-                if(item.equals("Mannheim Men"))
-                {
-                    residences = "Mannheim Men";
-                }
-                if(item.equals("Huis Technikon"))
-                {
-                    residences = "Huis Technikon";
-                }
-            }
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Graduandi")){
+                   residences = "Graduandi";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Welkom")){
+                   residences = "Welkom";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Gymnos")){
+                   residences = "Gymnos";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Eendrag")){
+                   residences = "Eendrag";
+               }
+               else
+               {
+                   residences = "Welgemoed";
+               }
+           }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
 
-        //Roles spinner
-        spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item2 = adapterView.getItemAtPosition(i).toString();
+           }
+       });
 
-                if (item2.equals("Residence Manager"))
-                {
+       spRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               if(adapterView.getItemAtPosition(i).equals("Residence Manager"))
+               {
                    roles = "Residence Manager";
-                }
-                if(item2.equals("Hc"))
-                {
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Student")){
+                   roles = "Student";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Hc")){
                    roles = "Hc";
-                }
-                if(item2.equals("Warden"))
-                {
-                    roles = "Warden";
-                }
-                if(item2.equals("Mentor"))
-                {
-                    roles = "Mentor";
-                }
-                if(item2.equals("Caretaker"))
-                {
-                    roles = "Caretaker";
-                }
-                if(item2.equals("Student"))
-                {
-                    roles = "Student";
-                }
-            }
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Caretaker")){
+                   roles = "Caretaker";
+               }
+               else {
+                   roles = "Mentor";
+               }
+           }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-            }
-        });
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+
+           }
+       });
 
         rgGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if (checkedId == R.id.rbFemale) {
-                    gender = "Female";
+                    Gender = "Female";
                 } else if (checkedId == R.id.rbMale) {
-                    gender = "Male";
+                    Gender = "Male";
                 }
             }
         });
 
-       //btn Register
         btnRegisterNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String firstName = etFirstName.getText().toString().trim();
-                final String surname = etLastName.getText().toString().trim();
-                final String stNum = etStudentNo.getText().toString().trim();
-                final String email = etUsername.getText().toString().trim();
-                final String password = etPassword.getText().toString().trim();
-                final String confirmPassword = etConfirmPass.getText().toString().trim();
+                final String FirstName = etFirstName.getText().toString().trim();
+                final String Surname = etLastName.getText().toString().trim();
+                final String StNum = etStudentNo.getText().toString().trim();
+                final String Email = etUsername.getText().toString().trim();
+                final String Password = etPassword.getText().toString().trim();
+                final String ConfirmPassword = etConfirmPass.getText().toString().trim();
 
-                if (email.isEmpty() && password.isEmpty() && firstName.isEmpty() && surname.isEmpty()  &&confirmPassword.isEmpty())
+
+
+
+                if (Email.isEmpty() && Password.isEmpty() && FirstName.isEmpty() && Surname.isEmpty()  &&ConfirmPassword.isEmpty())
                 {
                     Toast.makeText(Register.this, "Please enter all fields!", Toast.LENGTH_SHORT).show();
                 }
-                if(!(email.isEmpty() && password.isEmpty()))
+                else if(!(Email.isEmpty() && Password.isEmpty()))
                 {
-                    mFirebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
+                    mFirebaseAuth.createUserWithEmailAndPassword(Email,Password).addOnCompleteListener(Register.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful())
                             {
-                                User user = new User(firstName,surname,email,stNum,password,confirmPassword,gender,residences,roles);
+
+                              //  String Res = spResidence.getSelectedItem().toString();
+
+                              //  String Role = spRole.getSelectedItem().toString();
+
+                                User user = new User(FirstName,Surname,Email,StNum,Password,ConfirmPassword,Gender,residences,roles);
 
                                 FirebaseDatabase.getInstance().getReference("User")
                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -226,35 +202,59 @@ public class Register extends AppCompatActivity {
                                         }
                                     }
                                 });
-                            }else {
+                            }
+                            else
+                                {
                                 Toast.makeText(Register.this, "Registration failed! Please try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }
 
-                if(password != confirmPassword)
+                if(Surname.isEmpty())
+                {
+                    etFirstName.setError("First Name required");
+                }
+
+                if(Surname.isEmpty())
+                {
+                    etLastName.setError("Last Name required");
+                }
+
+                if(StNum.isEmpty())
+                {
+                    etStudentNo.setError("Student Number is required");
+                    etStudentNo.requestFocus();
+                }
+                 if(Password != ConfirmPassword)
                 {
                     etConfirmPass.setError("Passwords do not match!");
                     etConfirmPass.requestFocus();
                 }
-                if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
                     etUsername.setError("Please provide a valid email!");
                     etUsername.requestFocus();
                 }
-                if(password.length() < 6)
+                 if(Password.length() < 6)
                 {
                     etPassword.setError("Password length should be 6 characters!");
                     etPassword.requestFocus();
-                }
-                else
-                {
-                    Toast.makeText(Register.this, "Error occurred!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+   /* public  void addRoles()
+    {
+        ArrayAdapter<String>  adapter1 = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.Roles));
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spRole.setAdapter(adapter1);
+    }
 
-
+    public  void addResidence()
+    {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(),android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.Residences));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spResidence.setAdapter(adapter);
+    }*/
 }

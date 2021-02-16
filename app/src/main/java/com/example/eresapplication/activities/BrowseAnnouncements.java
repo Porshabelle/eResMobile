@@ -32,8 +32,7 @@ public class BrowseAnnouncements extends AppCompatActivity {
     RecyclerView recyclerView;
     UserHelperAdapter myAdapter;
     RecyclerView.LayoutManager layoutManager;
-    DatabaseReference ref;
-    final String res="";
+
 
 
     @Override
@@ -45,7 +44,6 @@ public class BrowseAnnouncements extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
 
              FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
                     .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements"), UserHelperClass.class)

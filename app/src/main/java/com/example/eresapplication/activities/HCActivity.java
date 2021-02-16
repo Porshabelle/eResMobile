@@ -23,7 +23,7 @@ public class HCActivity extends AppCompatActivity {
         setContentView(R.layout.activity_h_c);
 
         btnRespondComplaints = findViewById(R.id.btnRespondComplaints);
-        btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
+       // btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
         btnUpdateEventsCalender = findViewById(R.id.btnUpdateEventsCalender);
         btnViewComplaints = findViewById(R.id.btnViewComplaints);
         btnLogOut = findViewById(R.id.btnLogOut);
@@ -37,14 +37,14 @@ public class HCActivity extends AppCompatActivity {
             }
         });
 
-        btnPostAnnouncements.setOnClickListener(new View.OnClickListener() {
+        /*btnPostAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HCActivity.this, PostAnnouncements.class);
                 startActivity(intent);
             }
         });
-
+*/
         btnRespondComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

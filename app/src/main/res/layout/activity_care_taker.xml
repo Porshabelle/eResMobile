@@ -56,17 +56,17 @@
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="155dp"
-                    android:layout_height="66dp"
-                    android:layout_marginTop="30dp"
-                    app:srcCompat="@drawable/updatecomplaints" />
+                    android:layout_height="85dp"
+                    android:layout_marginTop="22dp"
+                    app:srcCompat="@drawable/replycomplaints" />
 
                 <TextView
                     android:id="@+id/tvFowardComplaints"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_height="34dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center_horizontal"
-                    android:text="Update Complaints Reports"
+                    android:text="Reply To Complaints"
                     android:textSize="13sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -99,73 +99,32 @@
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="144dp"
-                    android:layout_height="57dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="84dp"
+                    android:layout_marginTop="18dp"
                     app:srcCompat="@drawable/post_announcements" />
 
                 <TextView
                     android:id="@+id/tvChoosePortfolio"
                     android:layout_width="127dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="7dp"
                     android:gravity="center_horizontal"
                     android:text="Post Announcements" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/btnUpdateEventsCalender"
-            android:layout_width="114dp"
-            android:layout_height="138dp"
-            android:layout_margin="23dp"
-            android:layout_marginLeft="10dp"
-            android:clickable="true"
-            android:hapticFeedbackEnabled="true"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:layout_gravity="fill">>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="149dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="0dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp"
-                android:foregroundGravity="center_horizontal|center_vertical"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="129dp"
-                    android:layout_height="57dp"
-                    android:layout_marginTop="27dp"
-                    app:srcCompat="@drawable/update_events" />
-
-                <TextView
-                    android:id="@+id/tvUpdateStudentRecords"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center_horizontal"
-                    android:text="Update Events Calender" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
             android:id="@+id/btnViewComplaints"
             android:layout_width="136dp"
-            android:layout_height="138dp"
+            android:layout_height="wrap_content"
             android:layout_margin="23dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
             android:clickable="true"
             android:hapticFeedbackEnabled="true"
             app:cardCornerRadius="8dp"
             app:cardElevation="8dp"
-            app:layout_gravity="fill"
-            tools:layout_marginRight="15dp">
+            app:layout_gravity="fill">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -183,15 +142,15 @@
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="177dp"
-                    android:layout_height="57dp"
-                    android:layout_marginTop="23dp"
+                    android:layout_height="95dp"
+                    android:layout_marginTop="10dp"
                     app:srcCompat="@drawable/view_complains" />
 
                 <TextView
                     android:id="@+id/tvViewComplaints"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:text="View Complaints" />
             </LinearLayout>
@@ -200,7 +159,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/btnManageProfile"
             android:layout_width="136dp"
-            android:layout_height="133dp"
+            android:layout_height="142dp"
             android:layout_margin="23dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="0dp"
@@ -227,7 +186,7 @@
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="177dp"
-                    android:layout_height="64dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="15dp"
                     app:srcCompat="@drawable/manage_profile" />
 

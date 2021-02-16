@@ -1,26 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">eRes</string>
 
-    <string-array name="Residences">
-        <item>Mannheim Ladies</item>
-        <item>Welgemoed</item>
-        <item>Loggies</item>
-        <item>Eendrag</item>
-        <item>Gymnos</item>
-        <item>Graduandi</item>
-        <item>Welkom</item>
-        <item>Mannheim Men</item>
-        <item>Huis Technikon</item>
-    </string-array>
-
-    <string-array name="Roles">
-        <item>Residence Manager</item>
-        <item>Hc</item>
-        <item>Warden</item>
-        <item>Mentor</item>
-        <item>Caretaker</item>
-        <item>Student</item>
-    </string-array>
 </resources>
 
 

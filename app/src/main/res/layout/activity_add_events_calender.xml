@@ -8,24 +8,43 @@
     android:background="@drawable/background"
     tools:context=".activities.AddEventsCalender">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="75dp"
+        android:gravity="center_horizontal"
+        android:text="Add Event to Calender"
+        android:textColor="#000000"
+        android:textSize="25dp" />
+
     <CalendarView
         android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:focusedMonthDateColor="#C9DDB2" />
-
-    <Button
-        android:id="@+id/btnSet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Set" />
+        android:focusedMonthDateColor="#512DA8" />
 
     <EditText
         android:id="@+id/etEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:ems="10"
         android:gravity="center_horizontal"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:hint="Event Name"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/btnSet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/gradient"
+        android:text="Add" />
 </LinearLayout>

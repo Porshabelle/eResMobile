@@ -26,7 +26,6 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
 
         btnViewComplaints = findViewById(R.id.btnViewComplaints);
         btnBrowseAnnouncements = findViewById(R.id.btnBrowseAnnouncements);
-        // btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
         btnUpdateEventsCalender = findViewById(R.id.btnUpdateEventsCalender);
         btnManageProfile = findViewById(R.id.btnManageProfile);
         btnLogOut = findViewById(R.id.btnLogOut);
@@ -48,44 +47,7 @@ public class WelcomeScreen extends AppCompatActivity implements View.OnClickList
                 intent = new Intent(this, BrowseAnnouncements.class);
                 startActivity(intent);
                 break;
-/*
-            case R.id.btnPostAnnouncements:
-                intent = new Intent(this,PostAnnouncements.class);
-                startActivity(intent);
-                break;
-            case R.id.btnUpdateEventsCalender:
-                intent = new Intent(this,UpdateEventsCalender.class);
-                startActivity(intent);
-                break;
-            case R.id.btnViewComplaints:
-                intent = new Intent(this,ViewComplaints.class);
-                startActivity(intent);
-                break;
-            case R.id.btnManageProfile:
-                intent = new Intent(this,ManageProfile.class);
-                startActivity(intent);
-                break;
 
-            case R.id.btnLogOut:
-                SharedPreferences myPrefs = getSharedPreferences("MyPref",MODE_PRIVATE);
-                SharedPreferences.Editor editor = myPrefs.edit();
-                editor.clear();
-                editor.commit();
-
-                Intent logOutintent = new Intent(WelcomeScreen.this , Login.class);
-                startActivity(logOutintent);
-                //splash screen
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent splashIntent = new Intent(WelcomeScreen.this , Login.class);
-                        startActivity(splashIntent);
-                        finish();
-                    }
-                },SPLASH_TIME_OUT);
-                //end splash screen
-                break;
-        }*/
         }
     }
 }

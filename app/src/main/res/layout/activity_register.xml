@@ -3,29 +3,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
     android:orientation="vertical"
+    android:visibility="visible"
     tools:context=".activities.Register">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/profile_photo" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="117dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo"
+        app:civ_border_width="4dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="382dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="-58dp"
+        android:fontFamily="@font/mallanna"
+        android:gravity="center_horizontal"
+        android:text="Welcome to eRes"
+        android:textColor="#000000"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/mallanna"
+        android:text="Hi! Please complete the below form to register"
+        android:textColor="#000000"
+        android:textSize="17dp" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/OutlineTextBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="55dp"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFirstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="First Name"
@@ -35,14 +59,16 @@
     <com.google.android.material.textfield.TextInputLayout
         style="@style/OutlineTextBox"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="45dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLastName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Last Name"
@@ -51,14 +77,16 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="45dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="47dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Username"
@@ -67,14 +95,16 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="45dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etStudentNo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Student Number"
@@ -82,23 +112,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"/>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="45dp"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Password"
@@ -109,15 +135,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirmPassLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginRight="45dp"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etConfirmPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_height="47dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Confirm Password"
@@ -128,8 +156,9 @@
 
     <LinearLayout
         android:id="@+id/margin"
-        android:layout_width="wrap_content"
+        android:layout_width="381dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
@@ -138,8 +167,11 @@
             android:layout_width="600dp"
             android:layout_height="44dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"
             android:layout_weight="1"
-            android:text="Gender" />
+            android:fontFamily="@font/mallanna"
+            android:text="Gender"
+            android:textColor="#000000" />
 
         <RadioGroup
             android:id="@+id/rgGender"
@@ -151,6 +183,7 @@
                 android:id="@+id/rbFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/mallanna"
                 android:text="Female"
                 android:textSize="10sp" />
 
@@ -158,6 +191,7 @@
                 android:id="@+id/rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/mallanna"
                 android:text="Male"
                 android:textSize="10sp" />
         </RadioGroup>
@@ -165,37 +199,40 @@
 
     <Spinner
         android:id="@+id/spResidence"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:entries="@array/Residences"/>
+        android:layout_width="295dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="21dp"
+        android:entries="@array/Residences" />
 
     <Spinner
         android:id="@+id/spRole"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="296dp"
+        android:layout_height="29dp"
         android:layout_margin="20dp"
-        android:entries="@array/Roles"/>
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="80dp"
+        android:entries="@array/Roles" />
 
     <LinearLayout
         android:id="@+id/btnRegisterUser"
         android:layout_width="match_parent"
-        android:layout_height="83dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
+        android:layout_marginTop="-15dp"
         android:layout_marginRight="0dp"
         android:gravity="center|center_horizontal|top"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnRegisterNewUser"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_width="261dp"
+            android:layout_height="35dp"
             android:layout_marginTop="15dp"
             android:background="@drawable/gradient"
+            android:fontFamily="@font/mallanna"
             android:gravity="center"
             android:linksClickable="true"
-            android:text="Register"
+            android:text="Create Account"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 

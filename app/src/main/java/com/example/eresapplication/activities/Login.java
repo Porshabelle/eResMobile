@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -47,11 +48,10 @@ import java.util.Date;
 
 public class Login extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 4000;
-
+    private static int SPLASH_TIME_OUT = 3000;
     private View mProgressView;
-
     private TextView tvLoad;
+    private ImageView btnShowPassword;
 
     LinearLayout studentLayout, resManLayout, hcLayout, mentorLayout, mLoginFormView;
 
@@ -92,18 +92,21 @@ public class Login extends AppCompatActivity {
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         btnLogin = findViewById(R.id.btnLogin);
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
-        tvLoad = findViewById(R.id.tvLoad);
-
         etUsername = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etPassword);
-
-
 
         btnLogin = findViewById(R.id.btnLogin);
         btnRegisterNewUser = findViewById(R.id.btnRegisterNewUser);
         tvReset = findViewById(R.id.tvReset);
+        btnShowPassword = findViewById(R.id.ivShowPassword);
+
+        btnShowPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
         mAuthStateListener = new FirebaseAuth.AuthStateListener() {
 
@@ -139,7 +142,7 @@ public class Login extends AppCompatActivity {
                                 ref.addValueEventListener(new ValueEventListener() {
                                    @Override
                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                       String role =snapshot.child("Role").getValue().toString();
+                                       String role =snapshot.child("role").getValue().toString();
                                        if(role.equals("Student"))
                                        {
                                            startActivity(new Intent(Login.this,StudentActivity.class));

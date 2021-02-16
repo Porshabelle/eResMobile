@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="horizontal"
+    android:fadingEdge="vertical"
+    android:orientation="vertical"
     android:visibility="visible"
     tools:context=".activities.Login">
 
@@ -33,7 +34,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="match_parent"
             android:layout_height="267dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="65dp"
             android:src="@drawable/logo"
             app:civ_border_width="4dp" />
 
@@ -44,59 +45,90 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="53dp"
             android:background="#CDDC39"
-            app:cardCornerRadius="30dp">
+            app:cardCornerRadius="25dp">
 
             <EditText
                 android:id="@+id/etUserName"
-                android:layout_width="match_parent"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="30dp"
                 android:background="#FFFBFB"
                 android:cursorVisible="true"
                 android:ems="10"
+                android:fontFamily="@font/mallanna"
                 android:gravity="center_horizontal"
                 android:hapticFeedbackEnabled="false"
                 android:hint="Username"
                 android:inputType="textEmailAddress"
                 android:textColor="#000000"
-                android:textColorHint="#52000000"
-                tools:layout_marginLeft="10dp"
+                android:textColorHighlight="#000000"
+                android:textColorHint="#52171616"
+                tools:layout_marginLeft="45dp"
                 tools:textCursorDrawable="@android:color/black" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/user" />
+
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="53dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="53dp"
-            app:cardCornerRadius="13dp">
+            app:cardCornerRadius="25dp">
 
             <EditText
                 android:id="@+id/etPassword"
-                android:layout_width="match_parent"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="10dp"
                 android:background="#FFFFFF"
                 android:ems="10"
+                android:fontFamily="@font/mallanna"
                 android:gravity="center_horizontal"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:textColorHint="#52171616" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/password" />
+
+            <ImageView
+                android:id="@+id/ivShowPassword"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="270dp"
+                android:layout_marginTop="2dp"
+                android:clickable="true"
+                app:srcCompat="@drawable/showpassword"
+                tools:ignore="OnClick" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="162dp"
+            android:layout_height="122dp"
             android:layout_marginTop="0dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="127dp"
+                android:layout_height="98dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="0dp"
@@ -106,10 +138,11 @@
                 <Button
                     android:id="@+id/btnRegisterNewUser"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="37dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/gradient"
+                    android:fontFamily="@font/mallanna"
                     android:gravity="center"
                     android:linksClickable="true"
                     android:text="Register"
@@ -118,12 +151,13 @@
                 <Button
                     android:id="@+id/btnLogin"
                     android:layout_width="150dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="36dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/gradient"
                     android:clickable="true"
+                    android:fontFamily="@font/mallanna"
                     android:gravity="center"
                     android:linksClickable="true"
                     android:text="Log In"
@@ -136,10 +170,13 @@
         <TextView
             android:id="@+id/tvReset"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="43dp"
             android:clickable="true"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
-            android:text="Forgot password? Click here to reset" />
+            android:text="Forgot password? Click here to reset"
+            android:textColor="#020202"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

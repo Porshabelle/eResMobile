@@ -23,6 +23,7 @@ public class choosePortfolio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_portfolio);
 
+
         btnBrowseAnnouncements = findViewById(R.id.btnBrowseAnnouncements);
         btnViewEventsCalender = findViewById(R.id.btnViewEventsCalender);
         btnViewComplains = findViewById(R.id.btnViewComplaints);
@@ -39,6 +40,12 @@ public class choosePortfolio extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(choosePortfolio.this, ViewEventsCalender.class));
+            }
+        });
+        btnViewComplains.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(choosePortfolio.this, ChatRoom.class));
             }
         });
     }
