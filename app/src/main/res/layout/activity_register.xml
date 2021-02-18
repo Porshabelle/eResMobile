@@ -89,7 +89,7 @@
             android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
-            android:hint="Username"
+            android:hint="Email Address"
             android:textColor="#040404" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +107,7 @@
             android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
-            android:hint="Student Number"
+            android:hint="Student Number / Staff Number"
             android:textColor="#040404" />
     </com.google.android.material.textfield.TextInputLayout>
 

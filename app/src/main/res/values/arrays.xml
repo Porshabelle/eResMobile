@@ -25,11 +25,13 @@
 
     <string-array name="Roles">
         <item>Residence Manager</item>
-        <item>Hc</item>
         <item>Warden</item>
         <item>Mentor</item>
         <item>Caretaker</item>
         <item>Student</item>
+        <item>Hc Academics</item>
+        <item>Hc Domestic</item>
+        <item>Hc Sports</item>
     </string-array>
 
 </resources>

@@ -8,23 +8,32 @@
     android:orientation="vertical"
     tools:context=".activities.ResManagerActivity">
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="match_parent"
+        android:layout_height="141dp"
+        android:layout_marginTop="20dp"
+        android:foregroundGravity="center"
+        android:src="@drawable/logo"
+        app:civ_border_width="4dp" />
+
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="394dp"
+        android:layout_height="43dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="-5dp"
+        android:fontFamily="@font/mallanna"
+        android:gravity="center_horizontal"
         android:text="Res Manager"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
         android:textColor="#F6F4F4"
-        android:textSize="30sp" />
+        android:textSize="32sp" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="364dp"
         android:layout_height="541dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="-77dp"
         android:layout_marginRight="60dp"
         app:columnCount="2"
@@ -33,7 +42,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/btnRespondComplaints"
             android:layout_width="145dp"
-            android:layout_height="152dp"
+            android:layout_height="134dp"
             android:layout_margin="23dp"
             android:layout_marginLeft="10dp"
             android:clickable="true"
@@ -115,7 +124,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/btnUpdateEventsCalender"
             android:layout_width="114dp"
-            android:layout_height="138dp"
+            android:layout_height="1dp"
             android:layout_margin="23dp"
             android:layout_marginLeft="10dp"
             android:clickable="true"
@@ -157,7 +166,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/btnViewComplaints"
             android:layout_width="136dp"
-            android:layout_height="138dp"
+            android:layout_height="134dp"
             android:layout_margin="23dp"
             android:clickable="true"
             android:hapticFeedbackEnabled="true"

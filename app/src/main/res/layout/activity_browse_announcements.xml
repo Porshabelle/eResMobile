@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".activities.BrowseAnnouncements">
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="252dp"
+        android:layout_width="388dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
+        android:fontFamily="@font/mallanna"
+        android:gravity="center_horizontal"
         android:text="Announcements"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"

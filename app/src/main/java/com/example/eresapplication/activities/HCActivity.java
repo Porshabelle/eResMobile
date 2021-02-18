@@ -1,5 +1,6 @@
 package com.example.eresapplication.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -10,10 +11,22 @@ import android.widget.Toast;
 
 import com.example.eresapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HCActivity extends AppCompatActivity {
 
     FirebaseAuth mFireBaseAuth;
+
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
+
+
+    DatabaseReference ref;
 
     CardView btnUpdateEventsCalender, btnRespondComplaints, btnViewComplaints, btnLogOut, btnManageProfile, btnPostAnnouncements;
 
@@ -23,28 +36,30 @@ public class HCActivity extends AppCompatActivity {
         setContentView(R.layout.activity_h_c);
 
         btnRespondComplaints = findViewById(R.id.btnRespondComplaints);
-       // btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
+
         btnUpdateEventsCalender = findViewById(R.id.btnUpdateEventsCalender);
         btnViewComplaints = findViewById(R.id.btnViewComplaints);
         btnLogOut = findViewById(R.id.btnLogOut);
         btnManageProfile = findViewById(R.id.btnManageProfile);
 
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser =mFireBaseAuth.getCurrentUser();
+            }
+        };
+
+
         btnUpdateEventsCalender.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HCActivity.this, UpdateEventsCalender.class);
+                Intent intent = new Intent(HCActivity.this, AddEventsCalender.class);
                 startActivity(intent);
             }
         });
 
-        /*btnPostAnnouncements.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(HCActivity.this, PostAnnouncements.class);
-                startActivity(intent);
-            }
-        });
-*/
+
         btnRespondComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,14 +68,15 @@ public class HCActivity extends AppCompatActivity {
             }
         });
 
-
         btnViewComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HCActivity.this, ViewComplaints.class);
+                Intent intent = new Intent(HCActivity.this,SelectRoom.class);
                 startActivity(intent);
             }
         });
+
+
 
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +89,37 @@ public class HCActivity extends AppCompatActivity {
         btnManageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HCActivity.this, ManageProfile.class);
-                startActivity(intent);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+                ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String firstname = snapshot.child("firstname").getValue().toString();
+                        String surname = snapshot.child("surname").getValue().toString();
+                        String email = snapshot.child("email").getValue().toString();
+                        String studnumber = snapshot.child("studNum").getValue().toString();
+                        String password = snapshot.child("password").getValue().toString();
+                        String confPassword = snapshot.child("confPassword").getValue().toString();
+
+                        Intent intent = new Intent(HCActivity.this, ManageProfile.class);
+
+                        intent.putExtra("firstname", firstname);
+                        intent.putExtra("surname", surname);
+                        intent.putExtra("email",email);
+                        intent.putExtra("studnumber",studnumber);
+                        intent.putExtra("password", password);
+                        intent.putExtra("confPassword", confPassword);
+
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
             }
         });
     }

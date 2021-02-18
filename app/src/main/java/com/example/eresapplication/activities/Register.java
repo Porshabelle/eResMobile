@@ -48,8 +48,6 @@ public class Register extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
-        //get instance
-
 
         mFirebaseAuth = FirebaseAuth.getInstance();
 
@@ -131,6 +129,15 @@ public class Register extends AppCompatActivity {
                }
                else if(adapterView.getItemAtPosition(i).equals("Caretaker")){
                    roles = "Caretaker";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Hc Academics")){
+                   roles = "Hc Academics";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Hc Domestic")){
+                   roles = "Hc Domestic";
+               }
+               else if(adapterView.getItemAtPosition(i).equals("Hc Sports")){
+                   roles = "Hc Sports";
                }
                else {
                    roles = "Mentor";
@@ -228,8 +235,8 @@ public class Register extends AppCompatActivity {
                 }
                  if(Password != ConfirmPassword)
                 {
-                    etConfirmPass.setError("Passwords do not match!");
-                    etConfirmPass.requestFocus();
+                    etConfirmPass.setError("");
+
                 }
                 if(!Patterns.EMAIL_ADDRESS.matcher(Email).matches()){
                     etUsername.setError("Please provide a valid email!");

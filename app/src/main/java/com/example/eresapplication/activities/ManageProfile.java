@@ -67,6 +67,7 @@ public class ManageProfile extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Unsuccessful...Data is the same and cannot be updated!", Toast.LENGTH_SHORT).show();
         }
+        finish();
     }
 
     private boolean confPasswordChanged() {

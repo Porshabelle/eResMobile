@@ -32,6 +32,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<EventCalender,EventsA
         TextView tvEvent;
         TextView tvMonth;
         TextView tvDay;
+
         public myViewHolder(@NonNull View itemView)
         {
             super(itemView);

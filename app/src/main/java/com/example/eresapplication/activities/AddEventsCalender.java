@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.eresapplication.Classes.EventCalender;
+import com.example.eresapplication.Classes.UserHelperClass;
 import com.example.eresapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,13 +25,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AddEventsCalender extends AppCompatActivity {
 
-    EditText etEvent;
+    EditText etEvent,etDescription;
     CalendarView calender;
     Button btnSet;
     private String day,monthOfYear,yearOfYears;
 
     FirebaseDatabase rootNode;
-    DatabaseReference reference;
+    DatabaseReference reference,ref;
 
 
     @Override
@@ -38,6 +40,7 @@ public class AddEventsCalender extends AppCompatActivity {
         setContentView(R.layout.activity_add_events_calender);
 
         etEvent = findViewById(R.id.etEvent);
+        etDescription = findViewById(R.id.etDescription);
         calender = findViewById(R.id.calendar);
         btnSet = findViewById(R.id.btnSet);
 
@@ -117,12 +120,33 @@ public class AddEventsCalender extends AppCompatActivity {
         btnSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(AddEventsCalender.this, "Event added successfully!", Toast.LENGTH_SHORT).show();
-                rootNode = FirebaseDatabase.getInstance();
-                reference = rootNode.getReference().child("Events");
 
-                EventCalender eventCalender = new EventCalender(day,etEvent.getText().toString(),monthOfYear,yearOfYears);
-                reference.push().setValue(eventCalender);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String uid = user.getUid();
+
+                ref = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
+
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String role = snapshot.child("role").getValue().toString();
+                        String firstname = snapshot.child("firstname").getValue().toString();
+                        String surname = snapshot.child("surname").getValue().toString();
+
+                        Toast.makeText(AddEventsCalender.this, "Event added successfully!", Toast.LENGTH_SHORT).show();
+                        rootNode = FirebaseDatabase.getInstance();
+                        reference = rootNode.getReference().child("Events");
+
+                        EventCalender eventCalender = new EventCalender(day,etEvent.getText().toString(),etDescription.getText().toString(),monthOfYear,yearOfYears,role,firstname,surname);
+                        reference.push().setValue(eventCalender);
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
             }
         });
 

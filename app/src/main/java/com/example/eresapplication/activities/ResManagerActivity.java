@@ -26,7 +26,9 @@ public class ResManagerActivity extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
-    FirebaseAuth mFirebaseAuth;
+
+
+    FirebaseAuth mFireBaseAuth;
 
     DatabaseReference ref;
 
@@ -40,8 +42,8 @@ public class ResManagerActivity extends AppCompatActivity {
 
         btnPostAnnouncements = findViewById(R.id.btnPostAnnouncements);
         btnUpdateEventsCalender = findViewById(R.id.btnUpdateEventsCalender);
-        btnReplyComplaints = findViewById(R.id.btnPostAnnouncements);
-        btnViewComplaints = findViewById(R.id.btnPostAnnouncements);
+        btnReplyComplaints = findViewById(R.id.btnRespondComplaints);
+        btnViewComplaints = findViewById(R.id.btnViewComplaints);
         btnLogOut = findViewById(R.id.btnLogOut);
         btnManageProfile = findViewById(R.id.btnManageProfile);
 
@@ -49,7 +51,7 @@ public class ResManagerActivity extends AppCompatActivity {
 
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser mFirebaseUser = mFirebaseAuth.getCurrentUser();
+                FirebaseUser mFirebaseUser = mFireBaseAuth.getCurrentUser();
             }
         };
 
@@ -73,7 +75,7 @@ public class ResManagerActivity extends AppCompatActivity {
         btnReplyComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResManagerActivity.this,hcReply.class);
+                Intent intent = new Intent(ResManagerActivity.this,SelectRoom.class);
                 startActivity(intent);
             }
         });
@@ -81,7 +83,7 @@ public class ResManagerActivity extends AppCompatActivity {
         btnViewComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ResManagerActivity.this, ViewComplaints.class);
+                Intent intent = new Intent(ResManagerActivity.this,SelectRoom.class);
                 startActivity(intent);
             }
         });
@@ -89,6 +91,7 @@ public class ResManagerActivity extends AppCompatActivity {
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mFireBaseAuth.signOut();
                 Toast.makeText(ResManagerActivity.this, "Please wait!!! Logging you out", Toast.LENGTH_SHORT).show();
             }
         });

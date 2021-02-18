@@ -32,7 +32,7 @@ public class BrowseAnnouncements extends AppCompatActivity {
     RecyclerView recyclerView;
     UserHelperAdapter myAdapter;
     RecyclerView.LayoutManager layoutManager;
-
+    String portfolio = "";
 
 
     @Override
@@ -45,12 +45,57 @@ public class BrowseAnnouncements extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-             FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
-                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements"), UserHelperClass.class)
+        Intent intent = getIntent();
+        portfolio = intent.getStringExtra("portfolio");
+
+        if(portfolio.equals("academics"))
+        {
+            FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements").orderByChild("role").equalTo("Hc Academics"), UserHelperClass.class)
                     .build();
 
             myAdapter = new UserHelperAdapter(options);
             recyclerView.setAdapter(myAdapter);
+        }
+        else if(portfolio.equals("ram"))
+        {
+            FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements").orderByChild("role").equalTo("Residence Manager"), UserHelperClass.class)
+                    .build();
+
+            myAdapter = new UserHelperAdapter(options);
+            recyclerView.setAdapter(myAdapter);
+        }
+        else if(portfolio.equals("sports"))
+        {
+            FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements").orderByChild("role").equalTo("Hc Sports"), UserHelperClass.class)
+                    .build();
+
+            myAdapter = new UserHelperAdapter(options);
+            recyclerView.setAdapter(myAdapter);
+        }
+        else if(portfolio.equals("domestics"))
+        {
+            FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements").orderByChild("role").equalTo("Hc Domestic"), UserHelperClass.class)
+                    .build();
+
+            myAdapter = new UserHelperAdapter(options);
+            recyclerView.setAdapter(myAdapter);
+        }
+        else if(portfolio.equals("caretaker"))
+        {
+            FirebaseRecyclerOptions<UserHelperClass> options = new FirebaseRecyclerOptions.Builder<UserHelperClass>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference().child("Announcements").orderByChild("role").equalTo("Caretaker"), UserHelperClass.class)
+                    .build();
+
+            myAdapter = new UserHelperAdapter(options);
+            recyclerView.setAdapter(myAdapter);
+        }
+
+
+
     }
 
     @Override

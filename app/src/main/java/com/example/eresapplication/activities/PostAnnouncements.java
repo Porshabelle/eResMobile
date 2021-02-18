@@ -64,10 +64,10 @@ public class PostAnnouncements extends AppCompatActivity {
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            String role = snapshot.child("Role").getValue().toString();
-                            String firstname = snapshot.child("Firstname").getValue().toString();
-                            String surname = snapshot.child("Surname").getValue().toString();
-                            String residence = snapshot.child("Residence").getValue().toString();
+                            String role = snapshot.child("role").getValue().toString();
+                            String firstname = snapshot.child("firstname").getValue().toString();
+                            String surname = snapshot.child("surname").getValue().toString();
+                            String residence = snapshot.child("residence").getValue().toString();
 
                             String title = etTitle.getText().toString().trim();
                             String description = etDescription.getText().toString().trim();
@@ -76,8 +76,6 @@ public class PostAnnouncements extends AppCompatActivity {
                             reference.push().setValue(helperClass);
 
                             Toast.makeText(PostAnnouncements.this, "Submitted Announcement Successfully", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(PostAnnouncements.this, CareTakerActivity.class);
-                            startActivity(intent);
                             finish();
                         }
 

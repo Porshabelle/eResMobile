@@ -17,44 +17,73 @@ import com.example.eresapplication.R;
 public class StudentActivity extends AppCompatActivity {
 
 
-    CardView btnGoToHCAcademics, btnGoToSocial,btnGoToHCSports,btnGoToDomestics;
+    CardView btnGoToHCAcademics, btnGoToResManager,btnGoToHCSports,btnGoToDomestics,btnGoToCareTaker;
+    String portfolio = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         btnGoToDomestics = findViewById(R.id.btnGoToDomestics);
         btnGoToHCAcademics = findViewById(R.id.btnGoToHCAcademics);
-        btnGoToSocial = findViewById(R.id.btnGoToSocial);
+        btnGoToResManager = findViewById(R.id.btnGoToResManager);
         btnGoToHCSports = findViewById(R.id.btnGoToHCSports);
+        btnGoToCareTaker = findViewById(R.id.btnGoToCareTaker);
 
         btnGoToDomestics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StudentActivity.this,writeComplaintsAndSuggestions.class);
+                portfolio ="domestics";
+                Intent intent = new Intent(StudentActivity.this,choosePortfolio.class);
+                intent.putExtra("portfolio", portfolio);
+                startActivity(intent);
             }
         });
 
         btnGoToHCAcademics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
+                portfolio = "academics";
+                Intent intent= new Intent(StudentActivity.this, choosePortfolio.class);
+                intent.putExtra("portfolio", portfolio);
+                startActivity(intent);
 
             }
         });
 
-        btnGoToSocial.setOnClickListener(new View.OnClickListener() {
+        btnGoToResManager.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
+                portfolio = "ram";
+                Intent intent = new Intent(StudentActivity.this, choosePortfolio.class);
+                intent.putExtra("portfolio", portfolio);
+                startActivity(intent);
             }
         });
+
 
         btnGoToHCSports.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(StudentActivity.this, choosePortfolio.class));
+                portfolio = "sports";
+                Intent intent = new Intent(StudentActivity.this, choosePortfolio.class);
+                intent.putExtra("portfolio", portfolio);
+                startActivity(intent);
+            }
+        });
+
+        btnGoToCareTaker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                portfolio = "caretaker";
+                Intent intent = new Intent(StudentActivity.this, choosePortfolio.class);
+                intent.putExtra("portfolio", portfolio);
+                startActivity(intent);
+
             }
         });
     }

@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="126dp"
         app:srcCompat="@drawable/profile_photo" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -26,6 +26,7 @@
             android:id="@+id/etFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="First Name"
@@ -43,6 +44,7 @@
             android:id="@+id/etLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Last Name"
@@ -59,9 +61,10 @@
             android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
-            android:hint="Username"
+            android:hint="Email Address"
             android:textColor="#040404" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,9 +78,10 @@
             android:id="@+id/etStudentNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
-            android:hint="Student Number"
+            android:hint="Student Number / Staff Number"
             android:textColor="#040404" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,6 +103,7 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Password"
@@ -118,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:fontFamily="@font/mallanna"
             android:gravity="center_horizontal"
             android:hapticFeedbackEnabled="true"
             android:hint="Confirm Password"

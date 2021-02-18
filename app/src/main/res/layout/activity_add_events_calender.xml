@@ -26,17 +26,60 @@
         android:layout_height="wrap_content"
         android:focusedMonthDateColor="#512DA8" />
 
-    <EditText
-        android:id="@+id/etEvent"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="Event Name"
-        android:inputType="textPersonName" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        app:cardCornerRadius="15dp">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Title"
+            android:textColor="#040404" />
+
+        <EditText
+            android:id="@+id/etEvent"
+            android:layout_width="323dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="30dp"
+            android:hint="Event Title"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="80dp"
+            android:text="Description"
+            android:textColor="#090909" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="324dp"
+                android:layout_height="75dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="95dp"
+                android:layout_marginRight="10dp"
+                android:hint="Event Description"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
     <Button
         android:id="@+id/btnSet"

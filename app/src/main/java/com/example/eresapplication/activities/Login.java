@@ -131,7 +131,7 @@ public class Login extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if (!task.isSuccessful()) {
-                                Toast.makeText(Login.this, "Login failed, please try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Incorrect password or Username..Please try again", Toast.LENGTH_SHORT).show();
                             }
                             if (task.isSuccessful())
                             {
@@ -147,7 +147,15 @@ public class Login extends AppCompatActivity {
                                        {
                                            startActivity(new Intent(Login.this,StudentActivity.class));
                                        }
-                                       else if(role.equals("Hc"))
+                                       else if(role.equals("Hc Sports"))
+                                       {
+                                           startActivity(new Intent(Login.this,HCActivity.class));
+                                       }
+                                       else if(role.equals("Hc Academics"))
+                                       {
+                                           startActivity(new Intent(Login.this,HCActivity.class));
+                                       }
+                                       else if(role.equals("Hc Domestic"))
                                        {
                                            startActivity(new Intent(Login.this,HCActivity.class));
                                        }

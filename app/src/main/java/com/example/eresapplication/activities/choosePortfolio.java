@@ -17,6 +17,7 @@ import com.example.eresapplication.R;
 public class choosePortfolio extends AppCompatActivity {
 
     CardView btnBrowseAnnouncements, btnViewEventsCalender, btnViewComplains, btnWriteComplains, btnLogout;
+    String portfolio = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,16 @@ public class choosePortfolio extends AppCompatActivity {
         btnWriteComplains = findViewById(R.id.btnViewEventsCalender);
         btnLogout = findViewById(R.id.btnViewEventsCalender);
 
+        Intent intent = getIntent();
+        portfolio = intent.getStringExtra("portfolio");
+
         btnBrowseAnnouncements.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(choosePortfolio.this, BrowseAnnouncements.class));
+                Intent intent = new Intent(choosePortfolio.this, BrowseAnnouncements.class);
+                intent.putExtra("portfolio",portfolio);
+                startActivity(intent);
+
             }
         });
         btnViewEventsCalender.setOnClickListener(new View.OnClickListener() {
